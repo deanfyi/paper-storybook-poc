@@ -4,7 +4,7 @@ import { Button } from './Button'
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
   component: Button,
-  args: { children: 'Deposit' },
+  args: { variant: 'primary', children: 'Deposit' },
 }
 export default meta
 type Story = StoryObj<typeof Button>
