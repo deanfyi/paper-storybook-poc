@@ -2,6 +2,7 @@
 // Code-only: <label>/<input> semantics, aria wiring, focus ring.
 import { useId, type InputHTMLAttributes } from 'react'
 import { cn } from '../cn'
+import { focusRing } from '../focusRing'
 import { inputStyles as s } from './Input.styles'
 
 export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
@@ -27,12 +28,7 @@ export const Input = ({ label, hint, error, id, className, ...props }: InputProp
         id={inputId}
         aria-invalid={error ? true : undefined}
         aria-describedby={message ? messageId : undefined}
-        className={cn(
-          s.field,
-          s.placeholder,
-          state.field,
-          'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
-        )}
+        className={cn(s.field, s.placeholder, state.field, focusRing)}
         {...props}
       />
       {message && (

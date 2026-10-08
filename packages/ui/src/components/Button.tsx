@@ -2,6 +2,7 @@
 // Code-only: <button> semantics, focus ring, disabled cursor, asChild.
 import type { ButtonHTMLAttributes } from 'react'
 import { cn } from '../cn'
+import { focusRing } from '../focusRing'
 import { Slot } from '../Slot'
 import { buttonStyles as s } from './Button.styles'
 
@@ -26,7 +27,8 @@ export const Button = ({
         s.base,
         s.variant[variant],
         s.disabled,
-        'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed',
+        focusRing,
+        'disabled:cursor-not-allowed',
         className,
       )}
       {...props}

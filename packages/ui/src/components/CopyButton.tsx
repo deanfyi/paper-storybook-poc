@@ -4,6 +4,7 @@
 // auto-reset timer, live-region announcement. Visuals come from CopyButton.styles.ts.
 import { useEffect, useState, type ReactNode } from 'react'
 import { cn } from '../cn'
+import { focusRing } from '../focusRing'
 import { CheckIcon, CopyIcon } from '../icons'
 import { copyButtonStyles as s } from './CopyButton.styles'
 
@@ -55,11 +56,7 @@ export const CopyButton = ({
       type="button"
       onClick={handleClick}
       aria-label={copied ? copiedLabel : copyLabel}
-      className={cn(
-        s.base,
-        state.root,
-        'cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
-      )}
+      className={cn(s.base, state.root, 'cursor-pointer', focusRing)}
     >
       <span aria-live="polite">{copied ? copiedLabel : label}</span>
       <Icon className={state.icon} />
