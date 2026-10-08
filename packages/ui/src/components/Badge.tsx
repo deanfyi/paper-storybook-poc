@@ -1,24 +1,12 @@
-// Source: Paper "Jazzy nest" › Components › Badge (Badge/Success, Badge/Warning, Badge/Neutral).
+// Visuals come from Badge.styles.ts (synced from Paper).
 import type { HTMLAttributes } from 'react'
 import { cn } from '../cn'
-
-const tones = {
-  success: 'bg-success/tint text-success',
-  warning: 'bg-warning/tint text-warning',
-  neutral: 'bg-muted text-muted-foreground',
-}
+import { badgeStyles as s } from './Badge.styles'
 
 export type BadgeProps = HTMLAttributes<HTMLSpanElement> & {
-  tone?: keyof typeof tones
+  tone?: keyof typeof s.tone
 }
 
 export const Badge = ({ tone = 'neutral', className, ...props }: BadgeProps) => (
-  <span
-    className={cn(
-      'inline-flex h-6 shrink-0 items-center whitespace-nowrap rounded-full px-2 text-xs/tight font-semibold',
-      tones[tone],
-      className,
-    )}
-    {...props}
-  />
+  <span className={cn(s.base, s.tone[tone], className)} {...props} />
 )

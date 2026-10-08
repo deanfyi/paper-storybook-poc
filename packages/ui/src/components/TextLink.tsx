@@ -1,12 +1,12 @@
-// Source: Paper "Jazzy nest" › Screens › Deposit › "Terms link" (exported as a styled div; Paper has no link concept).
 // Always asChild: ui never renders <a> itself, the app passes its own link (e.g. next/link).
+// Visuals come from TextLink.styles.ts (synced from Paper); focus ring is code-only.
 import type { ReactElement } from 'react'
+import { cn } from '../cn'
 import { Slot } from '../Slot'
+import { textLinkStyles as s } from './TextLink.styles'
 
 export type TextLinkProps = { children: ReactElement }
 
 export const TextLink = ({ children }: TextLinkProps) => (
-  <Slot className="font-medium text-primary underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-primary">
-    {children}
-  </Slot>
+  <Slot className={cn(s.base, 'focus-visible:outline-2 focus-visible:outline-primary')}>{children}</Slot>
 )

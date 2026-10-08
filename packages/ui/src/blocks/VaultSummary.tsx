@@ -2,6 +2,7 @@
 // Presentational: all text and values arrive pre-translated / pre-formatted.
 import type { ReactNode } from 'react'
 import { Card, CardBody, CardHeader } from '../components/Card'
+import { vaultSummaryStyles as s } from './VaultSummary.styles'
 
 export type VaultSummaryProps = {
   title: ReactNode
@@ -16,13 +17,13 @@ export const VaultSummary = ({ title, status, apyLabel, apy, stats }: VaultSumma
   <Card>
     <CardHeader title={title} action={status} />
     <CardBody>
-      <span className="text-sm/tight text-muted-foreground">{apyLabel}</span>
-      <span className="text-xl/display font-semibold tracking-tight">{apy}</span>
-      <dl className="flex flex-col gap-2 pt-4">
+      <span className={s.apyLabel}>{apyLabel}</span>
+      <span className={s.apy}>{apy}</span>
+      <dl className={s.stats}>
         {stats.map((stat, i) => (
-          <div key={i} className="flex justify-between gap-4 text-sm/tight">
-            <dt className="text-muted-foreground">{stat.label}</dt>
-            <dd className="text-right font-medium">{stat.value}</dd>
+          <div key={i} className={s.stat}>
+            <dt className={s.statLabel}>{stat.label}</dt>
+            <dd className={s.statValue}>{stat.value}</dd>
           </div>
         ))}
       </dl>

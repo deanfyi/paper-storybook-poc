@@ -4,6 +4,7 @@ import type { FormEvent, ReactNode } from 'react'
 import { Button } from '../components/Button'
 import { Card, CardBody, CardFooter, CardHeader } from '../components/Card'
 import { Input } from '../components/Input'
+import { depositFormStyles as s } from './DepositForm.styles'
 
 export type DepositFormProps = {
   title: ReactNode
@@ -46,7 +47,7 @@ export const DepositForm = ({
     <Card>
       <form onSubmit={handleSubmit} noValidate>
         <CardHeader title={title} action={network} />
-        <CardBody className="gap-4">
+        <CardBody className={s.body}>
           <Input
             label={amountLabel}
             placeholder={amountPlaceholder}
@@ -57,10 +58,10 @@ export const DepositForm = ({
             inputMode="decimal"
             autoComplete="off"
           />
-          {terms && <p className="text-xs/tight text-muted-foreground">{terms}</p>}
+          {terms && <p className={s.terms}>{terms}</p>}
         </CardBody>
         <CardFooter>
-          <Button type="submit" className="flex-1" disabled={submitting || !!error || !value}>
+          <Button type="submit" className={s.submit} disabled={submitting || !!error || !value}>
             {submitLabel}
           </Button>
         </CardFooter>

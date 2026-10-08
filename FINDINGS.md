@@ -35,3 +35,6 @@
 - ⚠️ Paper ignores `whiteSpace` on frames; it must be set on each text layer.
 - Behaviour fed back from code to Paper by hand: disabled-while-empty submit is now shown in Paper's Default variants and the Deposit screen.
 - Paper pages can't be reordered via MCP: order is Tokens, Components, Pages, Blocks (Storybook: Tokens, Components, Blocks, Pages).
+
+## Phase 5: round-trip
+- Convention: every component/block has `*.styles.ts` (visual classes only, keyed by Paper layer/variant names) and a `.tsx` (markup, hooks, a11y, code-only states). A Paper sync may rewrite only `*.styles.ts` + `theme.css`. Lint enforces it: class strings in `.tsx` may only be code-owned (`focus-visible:*`, `cursor-*`, `sr-only`). Refactor verified output-identical (rendered class sets equal on all 34 elements).

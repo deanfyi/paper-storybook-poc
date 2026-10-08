@@ -1,7 +1,8 @@
-// Source: Paper "Jazzy nest" › Components › Input (Input/Default, Input/Error).
-// Added in code (not in Paper): <label>/<input> semantics, aria wiring, focus ring.
+// Behaviour + semantics only; visuals come from Input.styles.ts (synced from Paper).
+// Code-only: <label>/<input> semantics, aria wiring, focus ring.
 import { useId, type InputHTMLAttributes } from 'react'
 import { cn } from '../cn'
+import { inputStyles as s } from './Input.styles'
 
 export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string
@@ -15,10 +16,11 @@ export const Input = ({ label, hint, error, id, className, ...props }: InputProp
   const inputId = id ?? autoId
   const messageId = `${inputId}-message`
   const message = error ?? hint
+  const state = s.state[error ? 'error' : 'default']
 
   return (
-    <div className={cn('flex flex-col gap-2', className)}>
-      <label htmlFor={inputId} className="text-sm/tight font-medium text-foreground">
+    <div className={cn(s.root, className)}>
+      <label htmlFor={inputId} className={s.label}>
         {label}
       </label>
       <input
@@ -26,15 +28,15 @@ export const Input = ({ label, hint, error, id, className, ...props }: InputProp
         aria-invalid={error ? true : undefined}
         aria-describedby={message ? messageId : undefined}
         className={cn(
-          'h-10 rounded-md border bg-background px-3 text-sm/tight text-foreground',
-          'placeholder:text-muted-foreground',
+          s.field,
+          s.placeholder,
+          state.field,
           'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
-          error ? 'border-danger' : 'border-border',
         )}
         {...props}
       />
       {message && (
-        <span id={messageId} className={cn('text-xs/tight', error ? 'text-danger' : 'text-muted-foreground')}>
+        <span id={messageId} className={cn(s.message, state.message)}>
           {message}
         </span>
       )}
