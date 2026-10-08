@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { PageHeader } from './PageHeader'
 
 const meta: Meta<typeof PageHeader> = {
-  title: 'Patterns/PageHeader',
+  title: 'Blocks/PageHeader',
   component: PageHeader,
   args: { title: 'Deposit', description: 'Earn variable yield on idle USDC. Withdraw anytime.' },
 }

@@ -3,7 +3,7 @@ import { Badge } from '../components/Badge'
 import { VaultSummary } from './VaultSummary'
 
 const meta: Meta<typeof VaultSummary> = {
-  title: 'Patterns/VaultSummary',
+  title: 'Blocks/VaultSummary',
   component: VaultSummary,
   decorators: [
     (Story) => (

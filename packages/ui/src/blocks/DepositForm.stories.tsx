@@ -4,7 +4,7 @@ import { TextLink } from '../components/TextLink'
 import { DepositForm, type DepositFormProps } from './DepositForm'
 
 const meta: Meta<typeof DepositForm> = {
-  title: 'Patterns/DepositForm',
+  title: 'Blocks/DepositForm',
   component: DepositForm,
   decorators: [
     (Story) => (

@@ -22,9 +22,10 @@
 - i18n: a sentence with an embedded link ("accept the {vault terms}") can't be split into fixed strings (word order varies by language), so it's a single `terms: ReactNode` slot the app fills with translated rich text + its own Link.
 - Paper has no i18n concept; its text is sample copy. Layer names (`Label`, `Hint`, `Terms link`) map to prop names.
 - Enforced in `packages/ui` lint: no JSX text / string literals / text attributes (i18n), no `<a>` (links via slot, `<TextLink>`, `<Button asChild>`), no `next/*` imports (framework-agnostic). Stories exempt.
-- Composed components (`patterns/`) are presentational + controlled; stories cover states (empty, value, error, submitting) and a long-German-text stress case.
+- Composed components, now "Blocks" (`blocks/`, Dean uses the same term), are presentational + controlled; stories cover states (empty, value, error, submitting) and a long-German-text stress case.
 - Page built 100% from `@poc/ui` (success bar 1 ✅): layout `div`/`main` only, all copy from `messages/en.tsx`, `next/link` only via `<TextLink>` / `<Button asChild>`.
 - The app lint policy forced two more ui components that weren't obvious up front: `PageHeader` (styled title text) and `Page` (muted ground, padding, column width). Any visual decision in a page = a ui component = a Paper frame. The rule surfaces gaps in the design system early.
 - App lint (`apps/web/app/**`): only `div`/`main` intrinsics; `className` limited to layout (visual prefixes like `text-`/`bg-`/`rounded-`, incl. `md:` variants, rejected); no `style`; no JSX text (i18n); `<Link>` must sit inside `TextLink`/`Button`. Limitation: dynamic classNames (template strings, `cn()`) bypass the class check.
 - Behaviour added in code with no Paper counterpart: disabled-while-empty submit, submitting label, validation messages. Paper shows static states only.
 - Caveat: `/terms` was built only to test links; it has no Paper design, which strictly violates "every shipped page designed in Paper".
+- Storybook mirrors Paper's pages: Tokens → Components → Blocks → Pages. `Pages/Deposit` composes blocks with sample data (design mirror); the shipped page lives in `apps/web`. Trade-off: page composition is duplicated (story vs app) because ui can't import app code.
