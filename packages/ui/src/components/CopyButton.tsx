@@ -1,3 +1,5 @@
+'use client'
+
 // Behaviour lives here and must survive every Paper sync: clipboard write, copied state,
 // auto-reset timer, live-region announcement. Visuals come from CopyButton.styles.ts.
 import { useEffect, useState, type ReactNode } from 'react'
