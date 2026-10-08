@@ -5,7 +5,7 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { cn } from '../cn'
 import { focusRing } from '../focusRing'
-import { CheckIcon, CopyIcon } from '../icons'
+import { Icon } from './Icon'
 import { copyButtonStyles as s } from './CopyButton.styles'
 
 export type CopyButtonProps = {
@@ -49,7 +49,6 @@ export const CopyButton = ({
   }
 
   const state = s.state[copied ? 'copied' : 'idle']
-  const Icon = copied ? CheckIcon : CopyIcon
 
   return (
     <button
@@ -59,7 +58,7 @@ export const CopyButton = ({
       className={cn(s.base, state.root, 'cursor-pointer', focusRing)}
     >
       <span aria-live="polite">{copied ? copiedLabel : label}</span>
-      <Icon className={state.icon} />
+      <Icon name={copied ? 'check' : 'copy'} className={state.icon} />
     </button>
   )
 }

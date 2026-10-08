@@ -5,7 +5,7 @@ const preview: Preview = {
   parameters: {
     layout: 'centered',
     // Same order as the Paper file's pages.
-    options: { storySort: { order: ['Tokens', 'Components', 'Blocks', 'Pages'] } },
+    options: { storySort: { order: ['Tokens', 'Icons', 'Components', 'Blocks', 'Pages'] } },
   },
 }
 
