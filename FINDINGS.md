@@ -29,3 +29,9 @@
 - Behaviour added in code with no Paper counterpart: disabled-while-empty submit, submitting label, validation messages. Paper shows static states only.
 - Caveat: `/terms` was built only to test links; it has no Paper design, which strictly violates "every shipped page designed in Paper".
 - Storybook mirrors Paper's pages: Tokens → Components → Blocks → Pages. `Pages/Deposit` composes blocks with sample data (design mirror); the shipped page lives in `apps/web`. Trade-off: page composition is duplicated (story vs app) because ui can't import app code.
+- Paper now has a Blocks page (DepositForm, VaultSummary, PageHeader × Default/state/LongText) mirroring Storybook's Blocks.
+- 👍 The LongText (German) variants caught a real layout bug on both sides: Badge text wrapped in a tight header ("Geringe Liquidität"). Fixed in code (`shrink-0 whitespace-nowrap`) and in Paper.
+- ⚠️ The same one-line Badge fix had to be applied to 7 separate copies in Paper (no instances). In code it was one line. This is the "drift" cost in practice.
+- ⚠️ Paper ignores `whiteSpace` on frames; it must be set on each text layer.
+- Behaviour fed back from code to Paper by hand: disabled-while-empty submit is now shown in Paper's Default variants and the Deposit screen.
+- Paper pages can't be reordered via MCP: order is Tokens, Components, Pages, Blocks (Storybook: Tokens, Components, Blocks, Pages).
