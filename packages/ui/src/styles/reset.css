@@ -1,0 +1,13 @@
+/*
+ * Drop Tailwind's default palette, type scale, weights, leading, tracking and
+ * radii so only Paper tokens (theme.css) are available. Spacing keeps the 4px
+ * multiplier (Paper's spacing-1..8 match it).
+ */
+@theme {
+  --color-*: initial;
+  --text-*: initial;
+  --font-weight-*: initial;
+  --leading-*: initial;
+  --tracking-*: initial;
+  --radius-*: initial;
+}

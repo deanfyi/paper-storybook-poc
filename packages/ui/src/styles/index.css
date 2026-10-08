@@ -1,5 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 @import "tailwindcss";
+@import "./reset.css";
 @import "./theme.css";
+
+@layer base {
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
 
 /* Let consuming apps' Tailwind pick up classes used inside ui components. */
 @source "../";

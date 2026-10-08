@@ -1,14 +1,46 @@
-/* Design tokens. Source of truth: Paper (synced in phase 2). Placeholder values for now. */
+/*
+ * GENERATED FROM PAPER: do not edit by hand.
+ * Source: Paper file "Jazzy nest" (01M4DYBJFTV1WSY00VDCFZBF66), tokens hash e91526b7.
+ * Regenerate via Paper MCP get_tokens({ format: "tailwind" }) and replace this file.
+ */
 @theme {
-  --color-background: #ffffff;
-  --color-foreground: #0a0a0a;
-  --color-primary: #2563eb;
-  --color-primary-foreground: #ffffff;
-  --color-muted: #f4f4f5;
-  --color-muted-foreground: #71717a;
-  --color-border: #e4e4e7;
-
-  --font-sans: ui-sans-serif, system-ui, sans-serif;
-
-  --radius-md: 0.5rem;
+  --color-background: #FFFFFF;
+  --color-foreground: #10201A;
+  --color-muted: #F1F4F2;
+  --color-muted-foreground: #5B6B63;
+  --color-border: #DCE3DF;
+  --color-primary: #1F5C45;
+  --color-primary-foreground: #FFFFFF;
+  --color-success: #2F7D4F;
+  --color-warning: #975F0E;
+  --color-danger: #B3261E;
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 20px;
+  --text-xl: 28px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --tracking-tight: -0.02em;
+  --tracking-wide: 0.04em;
+  --leading-tight: 20px;
+  --leading-normal: 24px;
+  --leading-display: 34px;
+  --opacity-disabled: 40%;
+  --opacity-tint: 12%;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --container-sm: 400px;
+  --container-md: 640px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-full: 9999px;
 }
