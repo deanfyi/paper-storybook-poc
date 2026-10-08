@@ -30,8 +30,5 @@ export const CardBody = ({ className, ...props }: HTMLAttributes<HTMLDivElement>
 )
 
 export const CardFooter = ({ className, ...props }: HTMLAttributes<HTMLElement>) => (
-  <footer
-    className={cn('flex justify-end gap-2 border-t border-border px-6 py-4', className)}
-    {...props}
-  />
+  <footer className={cn('flex justify-end gap-2 border-t border-border px-6 py-4', className)} {...props} />
 )

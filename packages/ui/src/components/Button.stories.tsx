@@ -13,6 +13,11 @@ export const Primary: Story = {}
 export const Secondary: Story = { args: { variant: 'secondary', children: 'Withdraw' } }
 export const Disabled: Story = { args: { disabled: true } }
 
+// asChild: the app's link (next/link in apps/web) styled as a button.
+export const AsLink: Story = {
+  args: { asChild: true, variant: 'secondary', children: <a href="#vaults">View vaults</a> },
+}
+
 // Mirrors the Paper board.
 export const AllVariants: Story = {
   render: () => (

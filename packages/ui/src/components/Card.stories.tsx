@@ -6,7 +6,13 @@ const meta: Meta<typeof Card> = {
   title: 'Components/Card',
   component: Card,
   // Paper shows the card on a muted board.
-  decorators: [(Story) => <div className="bg-muted p-8"><Story /></div>],
+  decorators: [
+    (Story) => (
+      <div className="bg-muted p-8">
+        <Story />
+      </div>
+    ),
+  ],
 }
 export default meta
 type Story = StoryObj<typeof Card>
