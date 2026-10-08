@@ -1,4 +1,5 @@
-// Placeholder until phase 4 builds the page from @poc/ui components.
-const Home = () => <>Paper POC: no components yet</>
+import { DepositScreen } from './deposit-screen'
+
+const Home = () => <DepositScreen />
 
 export default Home
