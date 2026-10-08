@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 @import "tailwindcss";
 @import "./reset.css";
-@import "./theme.css";
+/* static: emit every token var, even ones no utility uses (var() refs, color-mix). */
+@import "./theme.css" theme(static);
 
 @layer base {
   body {
