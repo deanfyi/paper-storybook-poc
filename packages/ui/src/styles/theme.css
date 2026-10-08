@@ -1,0 +1,14 @@
+/* Design tokens. Source of truth: Paper (synced in phase 2). Placeholder values for now. */
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #0a0a0a;
+  --color-primary: #2563eb;
+  --color-primary-foreground: #ffffff;
+  --color-muted: #f4f4f5;
+  --color-muted-foreground: #71717a;
+  --color-border: #e4e4e7;
+
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+
+  --radius-md: 0.5rem;
+}

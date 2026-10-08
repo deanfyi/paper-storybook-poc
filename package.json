@@ -1,0 +1,11 @@
+{
+  "name": "paper-storybook-poc",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm --filter web build",
+    "storybook": "pnpm --filter @poc/ui storybook",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck"
+  }
+}

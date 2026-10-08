@@ -1,0 +1,10 @@
+packages:
+  - apps/*
+  - packages/*
+
+# Block dependency install scripts; these ship prebuilt binaries.
+allowBuilds:
+  esbuild: false
+  unrs-resolver: false
+  '@tailwindcss/oxide': false
+  sharp: false

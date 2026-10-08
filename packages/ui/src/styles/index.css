@@ -1,0 +1,5 @@
+@import "tailwindcss";
+@import "./theme.css";
+
+/* Let consuming apps' Tailwind pick up classes used inside ui components. */
+@source "../";
