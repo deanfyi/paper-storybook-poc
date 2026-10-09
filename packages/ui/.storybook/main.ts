@@ -1,11 +1,18 @@
+import { createRequire } from 'node:module'
+import { dirname, join } from 'node:path'
 import type { StorybookConfig } from '@storybook/react-vite'
 import tailwindcss from '@tailwindcss/vite'
 
+// pnpm doesn't hoist: Storybook resolves presets from its own store dir, so hand it absolute
+// paths (Storybook's documented pnpm setup). Without this the vitest runner can't find them.
+const require = createRequire(import.meta.url)
+const getAbsolutePath = (pkg: string) => dirname(require.resolve(join(pkg, 'package.json')))
+
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(ts|tsx)'],
-  framework: { name: '@storybook/react-vite', options: {} },
+  framework: { name: getAbsolutePath('@storybook/react-vite'), options: {} },
   // Forces :hover / :focus-visible via parameters.pseudo, for the States comparison stories.
-  addons: ['storybook-addon-pseudo-states'],
+  addons: [getAbsolutePath('storybook-addon-pseudo-states'), getAbsolutePath('@storybook/addon-vitest')],
   // Resolves derived prop types (e.g. `keyof typeof s.variant`) to literal unions, so controls
   // get their options. Default react-docgen can't follow the styles import.
   typescript: { reactDocgen: 'react-docgen-typescript' },
