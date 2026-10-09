@@ -1,7 +1,7 @@
 /*
  * GENERATED FROM PAPER: do not edit by hand.
  * Source: Paper file "Jazzy nest" (01M4DYBJFTV1WSY00VDCFZBF66), tokens hash 415f5d74.
- * Regenerate via Paper MCP get_tokens({ format: "tailwind" }) and replace this file.
+ * Regenerate via Paper MCP get_tokens({ format: "tailwind" }) + scripts/write-tokens.mjs.
  */
 @theme {
   --color-background: #ffffff;
