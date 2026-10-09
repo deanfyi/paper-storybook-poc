@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { pseudo, StatesBoard } from '../stories/StatesBoard'
 import { Button } from './Button'
 
 const meta: Meta<typeof Button> = {
@@ -26,5 +27,41 @@ export const AllVariants: Story = {
       <Button variant="secondary">Withdraw</Button>
       <Button disabled>Deposit</Button>
     </div>
+  ),
+}
+
+// Interaction states forced via pseudo-states; compare 1:1 with the Paper Button board
+// (Button/Primary/Hover, Button/Secondary/Hover, Button/Primary/Focus, Button/Disabled).
+// "Disabled + hover" checks that hover never applies to a disabled button.
+export const States: Story = {
+  parameters: { pseudo },
+  render: () => (
+    <StatesBoard
+      columns={['Default', 'Hover', 'Focus', 'Disabled', 'Disabled + hover']}
+      rows={(['primary', 'secondary'] as const).map((variant) => ({
+        name: variant,
+        cells: [
+          { state: 'default', node: <Button variant={variant}>Deposit</Button> },
+          { state: 'hover', node: <Button variant={variant}>Deposit</Button> },
+          { state: 'focus', node: <Button variant={variant}>Deposit</Button> },
+          {
+            state: 'disabled',
+            node: (
+              <Button variant={variant} disabled>
+                Deposit
+              </Button>
+            ),
+          },
+          {
+            state: 'disabled-hover',
+            node: (
+              <Button variant={variant} disabled>
+                Deposit
+              </Button>
+            ),
+          },
+        ],
+      }))}
+    />
   ),
 }

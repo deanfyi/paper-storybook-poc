@@ -5,7 +5,8 @@ import tseslint from 'typescript-eslint'
 const CODE_OWNED = '/^((disabled:cursor-|cursor-|sr-only)\\S*\\s*)+$/'
 const FOCUS = '/focus(-visible|-within)?:/'
 
-// ui policy (stories exempt: they supply sample copy and plain <a> links).
+// ui policy (stories and story-only helpers in src/stories exempt: they supply sample copy and
+// plain <a> links).
 const policy = [
   'error',
   // i18n: no user-facing text inside ui. All copy arrives via props/children.
@@ -84,7 +85,7 @@ const config = tseslint.config(
   { ignores: ['storybook-static/**'] },
   {
     files: ['src/**/*.{ts,tsx}'],
-    ignores: ['src/**/*.stories.tsx'],
+    ignores: ['src/**/*.stories.tsx', 'src/stories/**'],
     languageOptions: { parser: tseslint.parser },
     rules: {
       'no-restricted-syntax': policyWith(noSvgOutsideIcons),

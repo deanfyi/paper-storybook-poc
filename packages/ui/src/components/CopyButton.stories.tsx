@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, fn, userEvent, within } from 'storybook/test'
+import { pseudo, StatesBoard } from '../stories/StatesBoard'
 import { CopyButton } from './CopyButton'
 
 const meta: Meta<typeof CopyButton> = {
@@ -61,5 +62,30 @@ export const AllVariants: Story = {
   ),
   play: async ({ canvasElement }) => {
     await userEvent.click(within(canvasElement).getAllByRole('button')[1])
+  },
+}
+
+// Interaction states forced via pseudo-states; compare with the Paper CopyButton board
+// (CopyButton/Idle, CopyButton/Idle/Focus, CopyButton/Copied). Copied is a data state: clicked.
+export const States: Story = {
+  parameters: { pseudo },
+  render: (args) => (
+    <StatesBoard
+      columns={['Idle', 'Focus', 'Copied']}
+      rows={[
+        {
+          name: 'copy button',
+          cells: [
+            { state: 'default', node: <CopyButton {...args} /> },
+            { state: 'focus', node: <CopyButton {...args} /> },
+            { state: 'copied', node: <CopyButton {...args} resetAfterMs={60_000} /> },
+          ],
+        },
+      ]}
+    />
+  ),
+  play: async ({ canvasElement }) => {
+    const copied = canvasElement.querySelector('[data-state="copied"] button')
+    if (copied instanceof HTMLElement) await userEvent.click(copied)
   },
 }
