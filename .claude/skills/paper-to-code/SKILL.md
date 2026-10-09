@@ -10,6 +10,7 @@ Paper owns how things look; code owns how they behave. A sync may write only:
 - `packages/ui/src/styles/theme.css` (tokens), `styles/typography.css` + `styles/typography.ts` (text styles)
 - `packages/ui/src/**/*.styles.ts` (visual classes, keyed by Paper layer/variant names)
 - `packages/ui/src/icons/{mono,color}/Icon*.tsx`, `icons/index.ts`, `icons/iconNames.ts` (icon geometry + registry)
+- `paper-snapshots/**/*.txt` (raw Paper exports, for change detection)
 
 CI fails any `sync(paper):` commit that touches anything else (`scripts/check-sync-commits.mjs`).
 If the design needs something outside these files (a new prop, a new element, behaviour), stop
@@ -20,11 +21,35 @@ and report it: that's a code change for a human-reviewed commit, not a sync.
 - Paper desktop open on the file "Jazzy nest"; call `get_guide("paper-mcp-instructions")` once.
 - Clean working tree. Read `FINDINGS.md` if a rule below is unclear: it explains why.
 
+## 0. What changed in Paper (snapshots)
+
+Paper has no change feed and its export has no layer names, so changes are found by diffing.
+Source boards and their snapshot files:
+
+| Page › board                                        | Snapshot                                 |
+| --------------------------------------------------- | ---------------------------------------- |
+| Tokens › Typography                                 | `paper-snapshots/Tokens/Typography.txt`  |
+| Components › Button, Input, Badge, Card, CopyButton | `paper-snapshots/Components/<Board>.txt` |
+| Blocks › DepositForm, VaultSummary, PageHeader      | `paper-snapshots/Blocks/<Board>.txt`     |
+| Icons › Mono, Color                                 | `paper-snapshots/Icons/<Board>.txt`      |
+
+1. `get_basic_info` per page for board ids (pages can gain boards: add them to the table).
+2. `get_jsx` every source board and overwrite its snapshot with the output **verbatim** (the JSX
+   between the parentheses, nothing else).
+3. `git diff paper-snapshots`: only the boards that changed need mapping. For a changed board,
+   `get_tree_summary` gives the layer names (`Component/Variant`, `Stat/TVL`…) the export lacks.
+4. A missing snapshot (first sync, new board): compare the whole board against its styles file
+   once, then the snapshot is the baseline.
+
+Caveat: a token change can change how Paper exports unrelated boards (e.g. after `--color-focus`
+aliased `--color-primary`, `bg-primary` started exporting as `[background-color:var(--color-primary)]`).
+A snapshot diff with no visual change maps to no code change: that's fine, commit the snapshot.
+
 ## 1. Tokens
 
-`get_tokens({ format: "tailwind" })` → replace the `@theme { … }` block of `theme.css`
-(lowercase hex, keep the header, set "tokens hash" to the response's `contentHash.tokens`).
-Never hand-edit tokens in code.
+Save `get_tokens({ format: "tailwind" })` output to a scratch file, then
+`node scripts/write-tokens.mjs <file> <contentHash.tokens>`. It writes `theme.css` (header,
+hash, lowercase hex). Never hand-edit tokens in code.
 
 ## 1b. Typography (text styles)
 
@@ -62,6 +87,20 @@ Mapping rules:
   `text-<style>` (plus its colour class); anything else keeps atomic classes (`text-sm/tight
 font-semibold`). Exact match only: never round to the nearest style.
 - Prefer tokens over arbitrary values (`h-[44px]` → `h-11`, `opacity-[40%]` → `opacity-disabled`).
+  Same for Paper's explicit forms: `[background-color:var(--color-x)]` → `bg-x`,
+  `bg-(--color-x)/90` → `bg-x/90`, `[color:var(--color-x)]` → `text-x`,
+  `[text-decoration:underline_1px]` → `underline`.
+- Right-aligned text exports as `text-right flex justify-end flex-wrap`: keep `text-right` only
+  (the rest is how Paper lays out text).
+
+**Drift: the styles file has a class Paper doesn't.** A `*.styles.ts` mirrors Paper exactly, so an
+extra class (e.g. once `gap-4` on VaultSummary's stat rows) is drift: don't delete it and don't
+silently keep it. Report it; the fix is either `/code-to-paper` (the code is right, the class is
+shipped) or removal with the designer's OK.
+
+**Out-of-date copies.** Copies of a changed component on Blocks/Pages are never a source, but report
+any that still show the old look (find them with `find_nodes` on the old style signature): the
+designer fixes them, or `/code-to-paper` does.
 
 ## 3. Icons
 
@@ -86,8 +125,15 @@ pnpm lint && pnpm typecheck && pnpm test
 copy → copied → reset): a sync must never break them. Then compare Storybook's `States` stories
 with the Paper boards (screenshots) for a visual check.
 
+- Storybook from a worktree: port 6006 belongs to the main checkout, so run
+  `pnpm --filter @poc/ui exec storybook dev -p 6011 --no-open` and stop it when done.
+- `States` stories force Hover and Focus only. Active can't be forced (the pseudo-states addon
+  skips Tailwind's `color-mix` rules for `:active`), so check an Active change by grepping the
+  class in the styles file and the rendered CSS instead.
+
 ## 5. Commit
 
-`sync(paper): <what changed>` with only the allowed files, then run
+`sync(paper): <what changed>` (subject ≤ 72 chars) with only the allowed files, then run
 `node scripts/check-sync-commits.mjs HEAD~1 HEAD`. Docs/findings go in a separate commit.
-Report anything you skipped (untokened colours, structural changes) to the user.
+Report anything you skipped (untokened colours, structural changes, drift, out-of-date copies)
+to the user.
