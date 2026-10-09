@@ -64,18 +64,19 @@ export const DropdownMenu = ({
     setOpen(true)
   }
 
+  // Clicking outside only closes, like a native <select>: a hovered (active) option is a
+  // highlight, not a choice. Selecting takes a click, Enter/Space, or Tab from the keyboard.
   useEffect(() => {
     if (!isOpen) return
     const dismiss = (event: PointerEvent) => {
       if (event.target instanceof Node && !root.current?.contains(event.target)) {
-        if (active && active.value !== value) onValueChange(active.value)
         if (controlledOpen === undefined) setLocalOpen(false)
         onOpenChange?.(false)
       }
     }
     document.addEventListener('pointerdown', dismiss)
     return () => document.removeEventListener('pointerdown', dismiss)
-  }, [isOpen, active, value, onValueChange, controlledOpen, onOpenChange])
+  }, [isOpen, controlledOpen, onOpenChange])
 
   useEffect(() => {
     if (isOpen && active) {
@@ -144,7 +145,8 @@ export const DropdownMenu = ({
       ref={root}
       className={s.root}
       onBlur={(event) => {
-        if (isOpen && !event.currentTarget.contains(event.relatedTarget)) commit()
+        // Focus leaving closes without selecting; Tab commits in handleKeyDown before blur.
+        if (isOpen && !event.currentTarget.contains(event.relatedTarget)) setOpen(false)
       }}
     >
       <button

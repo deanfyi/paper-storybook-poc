@@ -103,6 +103,27 @@ export const TabAndOutsideDismissal: Story = {
   },
 }
 
+// Hovering only highlights: clicking outside closes the menu and keeps the selected value,
+// like a native <select>. (Tab still commits the keyboard-active option, see above.)
+export const HoverThenOutsideClickKeepsValue: Story = {
+  render: (args) => (
+    <>
+      <NetworkDropdown {...args} />
+      <button type="button">Next control</button>
+    </>
+  ),
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement)
+    const trigger = canvas.getByRole('combobox')
+    await userEvent.click(trigger)
+    await userEvent.hover(canvas.getByRole('option', { name: 'Base' }))
+    await userEvent.click(canvas.getByRole('button', { name: 'Next control' }))
+    await expect(canvas.queryByRole('listbox')).not.toBeInTheDocument()
+    await expect(trigger).toHaveTextContent('Ethereum')
+    await expect(args.onValueChange).not.toHaveBeenCalled()
+  },
+}
+
 export const DisabledTrigger: Story = {
   args: { disabled: true },
   play: async ({ canvasElement, args }) => {
