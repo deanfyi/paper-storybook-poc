@@ -7,7 +7,6 @@ import {
   IconPocMark,
   IconChevronDown,
   IconChevronUp,
-  IconNetworkCheck,
 } from '.'
 
 export const monoIcons = {
@@ -16,7 +15,6 @@ export const monoIcons = {
   copy: IconCopy,
   'chevron-down': IconChevronDown,
   'chevron-up': IconChevronUp,
-  'network-check': IconNetworkCheck,
 } as const
 
 export const colorIcons = {

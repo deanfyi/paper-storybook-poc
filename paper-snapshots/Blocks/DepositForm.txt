@@ -63,13 +63,13 @@
                 </svg>
               </div>
             </div>
-            <div className="flex flex-col w-[232px] p-1 rounded-md absolute left-[142px] top-[64px] [background-color:var(--color-background)] border border-solid border-border">
+            <div className="flex flex-col w-[232px] p-1 rounded-md absolute top-[calc(56px+var(--spacing-2))] right-6 [background-color:var(--color-background)] border border-solid border-border">
               <div className="flex items-center h-[40px] px-3 rounded-sm justify-between gap-3 shrink-0 bg-(--color-primary)/tint">
                 <div className="font-sans font-normal w-max text-foreground text-sm/tight">
                   Ethereum
                 </div>
-                <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: '0', display: 'inline-block' }}>
-                  <path d="M3 8L6.5 11.5L13 5" fill="none" stroke="var(--color-primary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <svg width="24" height="24" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', height: '16px', width: '16px', flexShrink: '0' }}>
+                  <path d="M3 8.5l3 3 7-7" fill="none" stroke="var(--color-primary)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
               <div className="flex items-center h-[40px] px-3 rounded-sm justify-between gap-3 shrink-0 bg-muted">
