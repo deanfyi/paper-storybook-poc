@@ -4,7 +4,7 @@
 export const inputStyles = {
   root: 'flex flex-col gap-2',
   label: 'text-sm/tight font-medium text-foreground', // Label
-  field: 'h-10 rounded-md border bg-background px-3 text-sm/tight text-foreground', // Field
+  field: 'h-11 rounded-md border bg-background px-3 text-sm/tight text-foreground', // Field
   placeholder: 'placeholder:text-muted-foreground', // Placeholder
   message: 'text-xs/tight', // Hint
   state: {
