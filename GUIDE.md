@@ -5,7 +5,8 @@ found and why: [`WRITEUP.md`](WRITEUP.md) (short) and [`FINDINGS.md`](FINDINGS.m
 
 ## What you need
 
-- **Paper desktop**, signed in, with the POC file (**"Jazzy nest"**) shared with you.
+- **Paper desktop**, signed in, with the POC file shared with you:
+  [**"Jazzy nest"**](https://app.paper.design/file/01M4DYBJFTV1WSY00VDCFZBF66).
   **Paper Pro**: the free plan's MCP limit runs out within one sync session.
 - **Node 22** (`.nvmrc`; with nvm: `nvm install && nvm use`) and **git**. pnpm comes through
   corepack (bundled with Node): `corepack enable` once, and the repo's pinned pnpm (11.9.0) is used.
@@ -33,7 +34,7 @@ collaborator access; CI runs lint, types, tests and the sync check on every PR.
 
 ## 2. Paper file
 
-Open "Jazzy nest" in Paper desktop. Its pages map 1:1 to Storybook:
+Open ["Jazzy nest"](https://app.paper.design/file/01M4DYBJFTV1WSY00VDCFZBF66) in Paper desktop. Its pages map 1:1 to Storybook:
 
 | Paper page | What's there                                                | Storybook  |
 | ---------- | ----------------------------------------------------------- | ---------- |
