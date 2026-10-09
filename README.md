@@ -8,11 +8,13 @@ From-scratch trial of a design-to-code flow: Paper → (MCP) → React component
 Node 22 (`.nvmrc`). `pnpm install && pnpm dev` (:3100).
 
 ## Success bar
+
 1. One page built 100% from `@poc/ui` components
 2. Bug fix in code → reflected in Paper, not overwritten by next export
 3. Restyle in Paper → diff touches styles/tokens only
 
 ## Phases
+
 1. ✅ Setup: workspace, Storybook, app, Paper MCP
 2. ✅ Tokens, Paper → code
 3. ✅ Components, Paper → code
@@ -30,6 +32,7 @@ Node 22 (`.nvmrc`). `pnpm install && pnpm dev` (:3100).
 7. Write-up from `FINDINGS.md`: what worked, what broke, what needed hand fixes
 
 ## Tokens (Paper → code)
+
 - `packages/ui/src/styles/theme.css` is generated from Paper (`get_tokens` format `tailwind`), never hand-edited; regen = replace file
 - `reset.css` drops Tailwind defaults (colors, type, weights, leading, tracking, radii) so only Paper tokens exist
 - Sync needs Paper desktop + an MCP client (agent); no CLI/CI path found yet
