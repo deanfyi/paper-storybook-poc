@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { TextLink } from './components/TextLink'
+import { textStyles } from './styles/typography'
 
 // Mirrors the "Colors & Type" board in Paper (Tokens page).
 const colors = [
@@ -47,3 +49,40 @@ const meta: Meta<typeof Tokens> = {
 export default meta
 
 export const ColorsAndType: StoryObj<typeof Tokens> = {}
+
+// Mirrors the "Typography" board in Paper (Tokens page). Class names are literal so Tailwind
+// generates them; the Record type fails typecheck if Paper adds a style this map lacks.
+const typography: Record<(typeof textStyles)[number], { className: string; spec: string; sample: string }> = {
+  h1: { className: 'text-h1', spec: 'h1 · 28/34', sample: 'Deposit' },
+  h2: { className: 'text-h2', spec: 'h2 · 20/24', sample: 'Your positions' },
+  h3: { className: 'text-h3', spec: 'h3 · 16/24', sample: 'USDC Vault' },
+  body: {
+    className: 'text-body',
+    spec: 'body · 14/20',
+    sample: 'Earn variable yield on idle USDC. Withdraw anytime.',
+  },
+  label: { className: 'text-label', spec: 'label · 14/20', sample: 'Amount' },
+  small: { className: 'text-small', spec: 'small · 12/20', sample: 'Balance: 1,240.50 USDC' },
+}
+
+export const Typography: StoryObj<typeof Tokens> = {
+  render: () => (
+    <div className="flex flex-col gap-5 p-8 font-sans text-foreground">
+      {textStyles.map((name) => (
+        <div key={name} className="flex items-baseline gap-6">
+          <span className="w-32 shrink-0 text-small text-muted-foreground">{typography[name].spec}</span>
+          <span className={typography[name].className}>{typography[name].sample}</span>
+        </div>
+      ))}
+      <div className="flex items-baseline gap-6">
+        <span className="w-32 shrink-0 text-small text-muted-foreground">link · inherits size</span>
+        <span className="text-body">
+          By depositing you accept the{' '}
+          <TextLink>
+            <a href="#terms">vault terms</a>
+          </TextLink>
+        </span>
+      </div>
+    </div>
+  ),
+}
