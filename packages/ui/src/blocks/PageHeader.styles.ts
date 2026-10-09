@@ -3,6 +3,6 @@
 // Source: Paper "Jazzy nest" › Blocks › PageHeader.
 export const pageHeaderStyles = {
   root: 'flex flex-col gap-1',
-  title: 'text-xl/display font-semibold tracking-tight text-foreground', // Title
-  description: 'text-sm/tight text-muted-foreground', // Subtitle
+  title: 'text-h1 text-foreground', // Title
+  description: 'text-body text-muted-foreground', // Subtitle
 }

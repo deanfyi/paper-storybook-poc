@@ -3,10 +3,10 @@
 // Source: Paper "Jazzy nest" › Components › Input (Input/Default, Input/Error).
 export const inputStyles = {
   root: 'flex flex-col gap-2',
-  label: 'text-sm/tight font-medium text-foreground', // Label
-  field: 'h-11 rounded-md border bg-background px-3 text-sm/tight text-foreground', // Field
+  label: 'text-label text-foreground', // Label
+  field: 'h-11 rounded-md border bg-background px-3 text-body text-foreground', // Field
   placeholder: 'placeholder:text-muted-foreground', // Placeholder
-  message: 'text-xs/tight', // Hint
+  message: 'text-small', // Hint
   state: {
     default: { field: 'border-border', message: 'text-muted-foreground' }, // Input/Default
     error: { field: 'border-danger', message: 'text-danger' }, // Input/Error

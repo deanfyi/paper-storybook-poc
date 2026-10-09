@@ -1,0 +1,28 @@
+/*
+ * GENERATED FROM PAPER: do not edit by hand.
+ * Source: Paper file "Jazzy nest" (01M4DYBJFTV1WSY00VDCFZBF66) › Tokens › Typography (Type/* layers).
+ * Each text style is a Tailwind composite font-size token: `text-h1` sets size, line-height,
+ * weight and tracking together. Colour is never part of a text style. Type/Link has no size
+ * (it inherits); its look lives in components/TextLink.styles.ts.
+ */
+@theme {
+  --text-h1: var(--text-xl);
+  --text-h1--line-height: var(--leading-display);
+  --text-h1--font-weight: var(--font-weight-semibold);
+  --text-h1--letter-spacing: var(--tracking-tight);
+  --text-h2: var(--text-lg);
+  --text-h2--line-height: var(--leading-normal);
+  --text-h2--font-weight: var(--font-weight-semibold);
+  --text-h3: var(--text-base);
+  --text-h3--line-height: var(--leading-normal);
+  --text-h3--font-weight: var(--font-weight-semibold);
+  --text-body: var(--text-sm);
+  --text-body--line-height: var(--leading-tight);
+  --text-body--font-weight: var(--font-weight-normal);
+  --text-label: var(--text-sm);
+  --text-label--line-height: var(--leading-tight);
+  --text-label--font-weight: var(--font-weight-medium);
+  --text-small: var(--text-xs);
+  --text-small--line-height: var(--leading-tight);
+  --text-small--font-weight: var(--font-weight-normal);
+}

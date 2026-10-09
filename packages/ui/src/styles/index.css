@@ -3,6 +3,7 @@
 @import './reset.css';
 /* static: emit every token var, even ones no utility uses (var() refs, color-mix). */
 @import './theme.css' theme(static);
+@import './typography.css' theme(static);
 
 @layer base {
   body {

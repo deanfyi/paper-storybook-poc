@@ -1,11 +1,12 @@
 // A Paper sync may only rewrite what Paper owns: visual classes (*.styles.ts), tokens
-// (theme.css) and icon geometry. Fails if any `sync(paper):` commit in the range touches
+// (theme.css, typography.css) and icon geometry. Fails if any `sync(paper):` commit in the range touches
 // anything else (behaviour, a11y, stories, config). Usage: check-sync-commits.mjs <base> <head>
 import { execFileSync } from 'node:child_process'
 
 const ALLOWED = [
   /^packages\/ui\/src\/.+\.styles\.ts$/,
-  /^packages\/ui\/src\/styles\/theme\.css$/,
+  /^packages\/ui\/src\/styles\/(theme|typography)\.css$/,
+  /^packages\/ui\/src\/styles\/typography\.ts$/,
   /^packages\/ui\/src\/icons\/(mono|color)\/Icon[A-Z]\w*\.tsx$/,
   /^packages\/ui\/src\/icons\/(index|iconNames)\.ts$/,
 ]

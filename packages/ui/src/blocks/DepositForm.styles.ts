@@ -3,6 +3,6 @@
 // Source: Paper "Jazzy nest" › Blocks › DepositForm.
 export const depositFormStyles = {
   body: 'gap-4', // Card/Body override
-  terms: 'text-xs/tight text-muted-foreground', // Terms
+  terms: 'text-small text-muted-foreground', // Terms
   submit: 'flex-1', // Button/Primary in Card/Footer
 }
