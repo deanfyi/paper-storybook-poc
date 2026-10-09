@@ -17,7 +17,7 @@ const meta: Meta<typeof DepositForm> = {
   ],
   args: {
     title: 'Deposit USDC',
-    network: <NetworkDropdown inForm />,
+    network: <NetworkDropdown align="end" />,
     amountLabel: 'Amount',
     amountPlaceholder: '0.00',
     balanceHint: 'Balance: 1,240.50 USDC',
@@ -50,7 +50,7 @@ export const Submitting: Story = { args: { value: '250.00', submitting: true, su
 export const LongText: Story = {
   args: {
     title: 'USDC einzahlen',
-    network: <NetworkDropdown label="Netzwerk" inForm />,
+    network: <NetworkDropdown label="Netzwerk" align="end" />,
     amountLabel: 'Einzuzahlender Betrag',
     balanceHint: 'Verfügbares Guthaben: 1.240,50 USDC',
     terms: (

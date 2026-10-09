@@ -23,6 +23,23 @@ type Story = StoryObj<typeof DropdownMenu>
 export const Default: Story = {}
 export const Disabled: Story = { args: { disabled: true } }
 
+export const End: Story = {
+  args: { align: 'end' },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const trigger = canvas.getByRole('combobox')
+    await userEvent.click(trigger)
+    const popup = canvas.getByRole('listbox')
+    const triggerBox = trigger.getBoundingClientRect()
+    const popupBox = popup.getBoundingClientRect()
+    await expect(popupBox.right).toBeCloseTo(triggerBox.right, 1)
+    await expect(popupBox.top - triggerBox.bottom).toBeCloseTo(8, 1)
+    await userEvent.click(canvas.getByRole('option', { name: 'Base' }))
+    await expect(trigger).toHaveTextContent('Base')
+    await expect(trigger).toHaveFocus()
+  },
+}
+
 // The reviewed open view: Ethereum selected, Arbitrum hovered, Polygon disabled.
 export const Open: Story = {
   play: async ({ canvasElement }) => {
@@ -139,7 +156,7 @@ export const States: Story = {
   parameters: { pseudo: { ...pseudo, hover: ['[data-state="hover"] [role="combobox"]'] } },
   decorators: [
     (Story) => (
-      <div className="h-80 w-[560px] p-8">
+      <div className="h-80 w-[824px] p-8">
         <Story />
       </div>
     ),
@@ -161,13 +178,19 @@ export const States: Story = {
         </div>
       </div>
       <div className="w-58">
-        <p className="mb-2 text-small text-muted-foreground">Open · network options</p>
+        <p className="mb-2 text-small text-muted-foreground">Open · align start</p>
         <NetworkDropdown {...args} open />
+      </div>
+      <div className="flex w-58 flex-col items-end">
+        <p className="mb-2 text-small text-muted-foreground">Open · align end</p>
+        <NetworkDropdown {...args} align="end" open />
       </div>
     </div>
   ),
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    await userEvent.hover(canvas.getByRole('option', { name: 'Arbitrum' }))
+    for (const option of canvas.getAllByRole('option', { name: 'Arbitrum' })) {
+      await userEvent.hover(option)
+    }
   },
 }

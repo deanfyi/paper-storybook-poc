@@ -31,7 +31,7 @@ const DepositPage = ({ value: initialValue, error, deposit, submitting }: Args) 
         />
         <DepositForm
           title="Deposit USDC"
-          network={<NetworkDropdown inForm />}
+          network={<NetworkDropdown align="end" />}
           amountLabel="Amount"
           amountPlaceholder="0.00"
           balanceHint="Balance: 1,240.50 USDC"

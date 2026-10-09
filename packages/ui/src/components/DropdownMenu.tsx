@@ -15,8 +15,8 @@ export type DropdownMenuProps = {
   /** Translated accessible name, e.g. the field's network label. */
   label: string
   disabled?: boolean
-  /** Uses the reviewed DepositForm positioning when composed into its network slot. */
-  inForm?: boolean
+  /** Aligns the popup to the start or end of its trigger. */
+  align?: 'start' | 'end'
   /** Optional controlled popup state; selection is always controlled. */
   open?: boolean
   onOpenChange?: (open: boolean) => void
@@ -28,7 +28,7 @@ export const DropdownMenu = ({
   onValueChange,
   label,
   disabled = false,
-  inForm = false,
+  align = 'start',
   open: controlledOpen,
   onOpenChange,
 }: DropdownMenuProps) => {
@@ -46,6 +46,7 @@ export const DropdownMenu = ({
     enabled[0]
   const isDisabled = disabled || enabled.length === 0
   const isOpen = !isDisabled && (controlledOpen ?? localOpen)
+  const isEndAligned = align === 'end'
   const listId = `${id}-list`
   const optionId = (option: DropdownMenuOption) => `${id}-option-${options.indexOf(option)}`
 
@@ -167,7 +168,12 @@ export const DropdownMenu = ({
         <Icon name={isOpen ? 'chevron-up' : 'chevron-down'} className={s.chevron} />
       </button>
       {isOpen && (
-        <div id={listId} role="listbox" aria-label={label} className={cn(s.content, inForm && s.inForm)}>
+        <div
+          id={listId}
+          role="listbox"
+          aria-label={label}
+          className={cn(s.content, isEndAligned && s.end)}
+        >
           {options.map((option) => (
             <div
               key={option.value}
@@ -195,7 +201,7 @@ export const DropdownMenu = ({
             >
               <span className={s.label}>{option.label}</span>
               <span className={s.indicator} aria-hidden>
-                {option.value === value && <Icon name="network-check" className={s.check} />}
+                {option.value === value && <Icon name="check" className={s.check} />}
               </span>
             </div>
           ))}

@@ -60,7 +60,7 @@ export const DepositScreen = () => {
               value={network}
               onValueChange={setNetwork}
               disabled={submitting}
-              inForm
+              align="end"
             />
           }
           amountLabel={m.amountLabel}
