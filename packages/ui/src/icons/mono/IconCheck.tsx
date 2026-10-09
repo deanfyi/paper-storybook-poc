@@ -1,4 +1,4 @@
-// SYNCED FROM PAPER (Icons › Mono › Check). Mono: all paint is currentColor or none.
+// SYNCED FROM PAPER (Icons › Mono › check). Mono: all paint is currentColor or none.
 import { iconDefaults, type IconSvgProps } from '../types'
 
 export const IconCheck = (props: IconSvgProps) => (

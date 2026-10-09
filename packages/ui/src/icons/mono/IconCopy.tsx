@@ -1,4 +1,4 @@
-// SYNCED FROM PAPER (Icons › Mono › Copy). Mono: all paint is currentColor or none.
+// SYNCED FROM PAPER (Icons › Mono › copy). Mono: all paint is currentColor or none.
 import { iconDefaults, type IconSvgProps } from '../types'
 
 export const IconCopy = (props: IconSvgProps) => (

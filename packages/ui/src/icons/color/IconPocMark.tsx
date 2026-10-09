@@ -1,4 +1,4 @@
-// SYNCED FROM PAPER (Icons › Color › Poc mark). Dummy brand mark: fixed colours (brand hex or
+// SYNCED FROM PAPER (Icons › Color › poc-mark). Dummy brand mark: fixed colours (brand hex or
 // var(--color-*) tokens). Defs ids come from useId so repeated/hidden instances never collide.
 import { useId } from 'react'
 import { iconDefaults, type IconSvgProps } from '../types'
