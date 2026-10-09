@@ -1,6 +1,7 @@
 # Findings (running log)
 
 ## Phase 2: tokens (Paper → code)
+
 - 👍 `get_tokens` exports a Tailwind 4 `@theme` block verbatim; token names match Tailwind namespaces, so `theme.css` is a pure file replace.
 - 👍 Token edits in Paper re-render every component on the canvas instantly (restyle-friendly).
 - ⚠️ Font token exported without fallbacks; fixed in Paper (not code) to keep the generated file untouched.
@@ -9,6 +10,7 @@
 - Guard: `reset.css` drops Tailwind defaults, so only Paper tokens produce classes (`bg-red-500` emits nothing).
 
 ## Phase 3: components (Paper → code)
+
 - 👍 `get_jsx` uses token classes throughout (`bg-primary`, `text-sm/tight`, `opacity-disabled`, `bg-success/tint`, `w-sm`); all resolve against our theme.
 - ⚠️ Inherited styles are lost/wrong: text inheriting color/font from its frame exports as `text-black` / `font-[system-ui,sans-serif]` instead of `text-foreground` / Inter. The reset catches `text-black` (emits nothing).
 - ⚠️ Output is static markup: all `div`s, no `<button>`/`<input>`/`<label>`, no props, no variants-as-props, no interaction states (hover/focus).
@@ -17,6 +19,7 @@
 - Added in code, absent from Paper: semantics, aria wiring, focus ring, disabled cursor. Paper has no place to express these, so they live only in code → round-trip question (phase 5).
 
 ## Phase 4: composed components + screen
+
 - ⚠️ Paper has no component instances (on their roadmap). `x-paper-clone`/duplicate = detached copy: changing Button/Primary's radius did not update the Deposit screen's button. Screens drift from components exactly like code would; only token changes propagate.
 - ⚠️ Paper has no link concept: "Terms link" exports as a styled `div`.
 - i18n: a sentence with an embedded link ("accept the {vault terms}") can't be split into fixed strings (word order varies by language), so it's a single `terms: ReactNode` slot the app fills with translated rich text + its own Link.
@@ -37,6 +40,7 @@
 - Paper pages can't be reordered via MCP: order is Tokens, Components, Pages, Blocks (Storybook: Tokens, Components, Blocks, Pages).
 
 ## Phase 5: round-trip
+
 - Convention: every component/block has `*.styles.ts` (visual classes only, keyed by Paper layer/variant names) and a `.tsx` (markup, hooks, a11y, code-only states). A Paper sync may rewrite only `*.styles.ts` + `theme.css` (checked by which files the diff touches). Lint keeps Paper classes out of `.tsx`: class strings there may only be code-owned (`cursor-*`, `sr-only`); the focus ring comes only from `focusRing`. Refactor verified output-identical (rendered class sets equal on all 34 elements).
 - Split is a choice, not a requirement: it makes "sync can't break behaviour" mechanically checkable. Cost: extra file per component, style keys coupled to Paper layer names. Alternative for the webapp: sync agent edits classes in place in `.tsx` (or a colocated styles object): fewer files, safety via review instead of path check. Kept for the POC since 5e measures it.
 - 5d code → Paper, bug fix: Input `h-10` → `h-11` in code, pushed to Paper with `find_nodes` (height 40px + background token: exactly the 6 `Field` copies, Buttons excluded by the second filter) + one `update_styles` on all 6. Cheap here, but only because copies share a distinctive style signature; with instances it'd be one edit. Layout held on the Deposit page.
@@ -69,6 +73,7 @@
 - ⛔ Cost/limits: Paper's free plan has a weekly MCP call limit. Hit it mid-phase-5 (2026-10-08) after one session of building tokens, components, blocks and screens: "Weekly MCP limit reached… Upgrade to Paper Pro". An agent-driven design↔code flow needs Paper Pro for whoever runs syncs, and call volume matters (no instances means one call per copy for every propagated fix). Next day (2026-10-09 09:37 -03): limit appeared reset, but only 2 calls (`get_basic_info`, `get_guide`) went through before "limit reached, resets in 11 hours". The window looks rolling, not a weekly reset, and the remaining allowance isn't visible, so a sync can stop halfway.
 
 ## Phase 6: enforcement + agent workflow
+
 - Before: every rule held only because someone ran lint by hand or remembered it (same failure as the monorepo's README-only icon rules). Now three layers:
   - Code shape: ESLint + TypeScript, run in CI on every push/PR.
   - Behaviour: every story runs as a test in headless Chromium (Storybook vitest addon), play functions included; 37 tests. Mutation check: breaking CopyButton's `setCopied(true)` fails `Copied` and `ResetsAfterTimeout`.
@@ -76,3 +81,10 @@
 - pnpm gotcha: the vitest runner couldn't load `@storybook/react-vite/preset` after a clean install (Storybook resolves presets from its own store dir; pnpm doesn't hoist). Fix = Storybook's documented `getAbsolutePath` for framework/addons in `main.ts`. Dev server had worked only by accident of hoisting.
 - Still unenforced: Paper-side conventions (frame naming, state frames, tokens over raw colours). Nothing runs inside Paper; the sync skill reports violations instead of guessing.
 
+## Typography (text styles)
+
+- Decision: text styles are design tokens, not a component (rejected an umbrella `Text` component). Paper › Tokens › **Typography** board (`Type/H1`…`Type/Small`, `Type/Link`) → generated `typography.css` with Tailwind v4 composite font-size tokens (`--text-h1` + `--line-height`/`--font-weight`/`--letter-spacing`), so `text-h1` sets all four. Headings stay plain elements in blocks; colour stays separate.
+- Styles derived from what the page already used: h1 28/34/600/tight (page title, APY), h2 20/24/600 (unused, completes the scale), h3 16/24/600 (card titles), body 14/20/400, label 14/20/500, small 12/20/400; link = medium + primary + underline, inheriting size (gives TextLink a real source; Paper took code's `underline-offset-2`, resolving that drift).
+- Sync rule: exact match only (size, leading, weight, tracking) → `text-<style>`; Button (14/600) and Badge (12/500) keep atomic classes. Verified: computed typography of all 17 text elements on the app page identical before/after.
+- 👍 Caught a silent bug: tailwind-merge treats unknown `text-small` as a colour and dropped it when merged with `text-muted-foreground` (Input hint went 12→16px). Fix: `cn()` extends tailwind-merge's font-size group from a generated `typography.ts` list, so a new Paper style can't reintroduce it. Any custom Tailwind namespace needs the same.
+- Paper still has no text-style binding: block layers are copies with raw values, so a Typography board change reaches code everywhere (blocks use `text-h1`) but not Paper's copies (`code-to-paper` per copy). Paper's `get_tokens` has no composite text tokens, so the sync reads the board, like components.

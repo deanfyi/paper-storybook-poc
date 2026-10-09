@@ -11,7 +11,8 @@ See `README.md` (phases, success bar) and `FINDINGS.md` (every decision and why)
 
 ## Who owns what
 
-- **Paper owns looks**: `styles/theme.css` (tokens, generated, never hand-edited), `*.styles.ts`
+- **Paper owns looks**: `styles/theme.css` (tokens) and `styles/typography.{css,ts}` (text styles
+  `text-h1`…`text-small`), both generated, never hand-edited; `*.styles.ts`
   (visual classes keyed by Paper layer names), icon geometry. Changed only by a Paper sync
   (`/paper-to-code`), in `sync(paper):` commits that touch nothing else (CI enforces).
 - **Code owns behaviour**: `.tsx` files (markup, hooks, a11y, states), the focus ring

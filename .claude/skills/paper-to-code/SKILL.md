@@ -7,7 +7,7 @@ description: Sync design changes from the Paper file into code (tokens, componen
 
 Paper owns how things look; code owns how they behave. A sync may write only:
 
-- `packages/ui/src/styles/theme.css` (tokens)
+- `packages/ui/src/styles/theme.css` (tokens), `styles/typography.css` + `styles/typography.ts` (text styles)
 - `packages/ui/src/**/*.styles.ts` (visual classes, keyed by Paper layer/variant names)
 - `packages/ui/src/icons/{mono,color}/Icon*.tsx`, `icons/index.ts`, `icons/iconNames.ts` (icon geometry + registry)
 
@@ -25,6 +25,18 @@ and report it: that's a code change for a human-reviewed commit, not a sync.
 `get_tokens({ format: "tailwind" })` → replace the `@theme { … }` block of `theme.css`
 (lowercase hex, keep the header, set "tokens hash" to the response's `contentHash.tokens`).
 Never hand-edit tokens in code.
+
+## 1b. Typography (text styles)
+
+**Tokens** page, **Typography** board: one text layer per style, named `Type/<Style>`
+(`Type/H1`, `Type/Body`…). `get_jsx` the board, then for each `Type/*` except `Type/Link`:
+
+- In `typography.css`, a Tailwind composite font-size token referencing the atomic tokens:
+  `--text-<style>: var(--text-xl)`, `--text-<style>--line-height`, `--text-<style>--font-weight`,
+  and `--text-<style>--letter-spacing` only when the layer has tracking. Lowercase style name.
+- In `typography.ts`, the same names in `textStyles` (`cn()` needs them to merge correctly).
+- Colour is never part of a text style; ignore the sample's colour.
+- `Type/Link` has no size (it inherits): its weight/colour/underline go to `TextLink.styles.ts`.
 
 ## 2. Components and blocks
 
@@ -46,6 +58,9 @@ Mapping rules:
   `wrap-anywhere`, `antialiased`, sample copy (all text comes from props in code).
 - A colour not bound to a token (`text-black`, raw hex) has no code equivalent (`reset.css` drops
   Tailwind's defaults): keep the existing token class and report it to the designer.
+- A text layer whose size, line-height, weight and tracking **all** match a text style →
+  `text-<style>` (plus its colour class); anything else keeps atomic classes (`text-sm/tight
+font-semibold`). Exact match only: never round to the nearest style.
 - Prefer tokens over arbitrary values (`h-[44px]` → `h-11`, `opacity-[40%]` → `opacity-disabled`).
 
 ## 3. Icons
