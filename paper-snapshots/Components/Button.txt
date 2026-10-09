@@ -18,7 +18,7 @@
             Withdraw
           </div>
         </div>
-        <div className="flex items-center justify-center h-[40px] font-semibold px-4 rounded-md bg-[#C1F026E6]">
+        <div className="flex items-center justify-center h-[40px] font-semibold px-4 rounded-md bg-(--color-primary)/90">
           <div className="flex font-semibold w-max font-[system-ui,sans-serif] [color:var(--color-primary-foreground)] text-sm/tight">
             Deposit
           </div>

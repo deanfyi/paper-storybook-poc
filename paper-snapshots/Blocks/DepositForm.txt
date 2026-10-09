@@ -5,7 +5,7 @@
       <div className="flex items-start gap-8">
         <div className="flex flex-col w-sm rounded-md shrink-0 [background-color:var(--color-background)] border border-solid border-border">
           <div className="flex items-center justify-between py-4 px-6 border-b border-b-solid border-b-border">
-            <div className="font-semibold font-[system-ui,sans-serif] text-black text-base/normal">
+            <div className="font-semibold font-[system-ui,sans-serif] text-foreground text-base/normal">
               Deposit USDC
             </div>
             <div className="font-[system-ui,sans-serif] text-muted-foreground text-sm/tight">
@@ -14,7 +14,7 @@
           </div>
           <div className="flex flex-col p-6 gap-4">
             <div className="flex flex-col w-full gap-2">
-              <div className="font-medium font-[system-ui,sans-serif] text-black text-sm/tight">
+              <div className="font-medium font-[system-ui,sans-serif] text-foreground text-sm/tight">
                 Amount
               </div>
               <div className="flex items-center h-[44px] px-3 rounded-md shrink-0 [background-color:var(--color-background)] border border-solid border-border">
@@ -45,7 +45,7 @@
         </div>
         <div className="flex flex-col w-sm rounded-md shrink-0 [background-color:var(--color-background)] border border-solid border-border">
           <div className="flex items-center justify-between py-4 px-6 border-b border-b-solid border-b-border">
-            <div className="font-semibold font-[system-ui,sans-serif] text-black text-base/normal">
+            <div className="font-semibold font-[system-ui,sans-serif] text-foreground text-base/normal">
               Deposit USDC
             </div>
             <div className="font-[system-ui,sans-serif] text-muted-foreground text-sm/tight">
@@ -54,7 +54,7 @@
           </div>
           <div className="flex flex-col p-6 gap-4">
             <div className="flex flex-col w-full gap-2">
-              <div className="font-medium font-[system-ui,sans-serif] text-black text-sm/tight">
+              <div className="font-medium font-[system-ui,sans-serif] text-foreground text-sm/tight">
                 Amount
               </div>
               <div className="flex items-center h-[44px] px-3 rounded-md shrink-0 [background-color:var(--color-background)] border border-solid border-danger">
@@ -85,7 +85,7 @@
         </div>
         <div className="flex flex-col w-sm rounded-md shrink-0 [background-color:var(--color-background)] border border-solid border-border">
           <div className="flex items-center justify-between py-4 px-6 border-b border-b-solid border-b-border">
-            <div className="font-semibold font-[system-ui,sans-serif] text-black text-base/normal">
+            <div className="font-semibold font-[system-ui,sans-serif] text-foreground text-base/normal">
               USDC einzahlen
             </div>
             <div className="font-[system-ui,sans-serif] text-muted-foreground text-sm/tight">
@@ -94,7 +94,7 @@
           </div>
           <div className="flex flex-col p-6 gap-4">
             <div className="flex flex-col w-full gap-2">
-              <div className="font-medium font-[system-ui,sans-serif] text-black text-sm/tight">
+              <div className="font-medium font-[system-ui,sans-serif] text-foreground text-sm/tight">
                 Einzuzahlender Betrag
               </div>
               <div className="flex items-center h-[44px] px-3 rounded-md shrink-0 [background-color:var(--color-background)] border border-solid border-border">

@@ -5,7 +5,7 @@
       <div className="flex items-start gap-8">
         <div className="flex flex-col w-sm rounded-md shrink-0 [background-color:var(--color-background)] border border-solid border-border">
           <div className="flex items-center justify-between py-4 px-6 border-b border-b-solid border-b-border">
-            <div className="font-semibold font-[system-ui,sans-serif] text-black text-base/normal">
+            <div className="font-semibold font-[system-ui,sans-serif] text-foreground text-base/normal">
               USDC Vault
             </div>
             <div className="flex items-center h-6 font-medium px-2 rounded-sm shrink-0 bg-success/tint">
@@ -18,7 +18,7 @@
             <div className="font-[system-ui,sans-serif] text-muted-foreground text-sm/tight">
               Current APY
             </div>
-            <div className="font-semibold tracking-tight font-[system-ui,sans-serif] text-black text-xl/display">
+            <div className="font-semibold tracking-tight font-[system-ui,sans-serif] text-foreground text-xl/display">
               5.42%
             </div>
             <div className="flex flex-col pt-4 gap-2">
@@ -43,7 +43,7 @@
         </div>
         <div className="flex flex-col w-sm rounded-md shrink-0 [background-color:var(--color-background)] border border-solid border-border">
           <div className="flex items-center justify-between py-4 px-6 border-b border-b-solid border-b-border">
-            <div className="font-semibold font-[system-ui,sans-serif] text-black text-base/normal">
+            <div className="font-semibold font-[system-ui,sans-serif] text-foreground text-base/normal">
               USDC Vault
             </div>
             <div className="flex items-center h-6 font-medium px-2 rounded-sm shrink-0 bg-muted">
@@ -56,7 +56,7 @@
             <div className="font-[system-ui,sans-serif] text-muted-foreground text-sm/tight">
               Current APY
             </div>
-            <div className="font-semibold tracking-tight font-[system-ui,sans-serif] text-black text-xl/display">
+            <div className="font-semibold tracking-tight font-[system-ui,sans-serif] text-foreground text-xl/display">
               5.42%
             </div>
             <div className="flex flex-col pt-4 gap-2">
@@ -81,7 +81,7 @@
         </div>
         <div className="flex flex-col w-sm rounded-md shrink-0 [background-color:var(--color-background)] border border-solid border-border">
           <div className="flex items-center justify-between py-4 px-6 border-b border-b-solid border-b-border">
-            <div className="font-semibold font-[system-ui,sans-serif] text-black text-base/normal">
+            <div className="font-semibold font-[system-ui,sans-serif] text-foreground text-base/normal">
               USDC-Tresor mit variabler Rendite
             </div>
             <div className="flex items-center h-6 font-medium px-2 rounded-sm shrink-0 bg-warning/tint">
@@ -94,7 +94,7 @@
             <div className="font-[system-ui,sans-serif] text-muted-foreground text-sm/tight">
               Aktueller effektiver Jahreszins
             </div>
-            <div className="font-semibold tracking-tight font-[system-ui,sans-serif] text-black text-xl/display">
+            <div className="font-semibold tracking-tight font-[system-ui,sans-serif] text-foreground text-xl/display">
               5.42%
             </div>
             <div className="flex flex-col pt-4 gap-2">
