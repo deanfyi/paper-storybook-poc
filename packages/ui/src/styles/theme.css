@@ -1,6 +1,6 @@
 /*
  * GENERATED FROM PAPER: do not edit by hand.
- * Source: Paper file "Jazzy nest" (01M4DYBJFTV1WSY00VDCFZBF66), tokens hash e91526b7.
+ * Source: Paper file "Jazzy nest" (01M4DYBJFTV1WSY00VDCFZBF66), tokens hash e8812d8d.
  * Regenerate via Paper MCP get_tokens({ format: "tailwind" }) and replace this file.
  */
 @theme {
@@ -41,6 +41,6 @@
   --spacing-6: 24px;
   --spacing-8: 32px;
   --radius-sm: 6px;
-  --radius-md: 10px;
+  --radius-md: 12px;
   --radius-full: 9999px;
 }
