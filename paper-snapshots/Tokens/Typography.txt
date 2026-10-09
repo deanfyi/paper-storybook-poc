@@ -1,0 +1,61 @@
+    <div className="[font-synthesis:none] wrap-anywhere flex overflow-clip w-md h-fit flex-col p-8 gap-[20px] [background-color:var(--color-background)] antialiased">
+      <div className="font-medium tracking-wide uppercase font-[system-ui,sans-serif] text-muted-foreground text-xs/tight">
+        Typography · text styles
+      </div>
+      <div className="flex items-baseline gap-6">
+        <div className="w-[120px] shrink-0 font-[system-ui,sans-serif] text-muted-foreground text-xs/tight">
+          h1 · 28/34
+        </div>
+        <div className="font-semibold tracking-tight font-[system-ui,sans-serif] text-foreground text-xl/display">
+          Deposit
+        </div>
+      </div>
+      <div className="flex items-baseline gap-6">
+        <div className="w-[120px] shrink-0 font-[system-ui,sans-serif] text-muted-foreground text-xs/tight">
+          h2 · 20/24
+        </div>
+        <div className="font-semibold font-[system-ui,sans-serif] text-foreground text-lg/normal">
+          Your positions
+        </div>
+      </div>
+      <div className="flex items-baseline gap-6">
+        <div className="w-[120px] shrink-0 font-[system-ui,sans-serif] text-muted-foreground text-xs/tight">
+          h3 · 16/24
+        </div>
+        <div className="font-semibold font-[system-ui,sans-serif] text-foreground text-base/normal">
+          USDC Vault
+        </div>
+      </div>
+      <div className="flex items-baseline gap-6">
+        <div className="w-[120px] shrink-0 font-[system-ui,sans-serif] text-muted-foreground text-xs/tight">
+          body · 14/20
+        </div>
+        <div className="font-normal font-[system-ui,sans-serif] text-foreground text-sm/tight">
+          Earn variable yield on idle USDC. Withdraw anytime.
+        </div>
+      </div>
+      <div className="flex items-baseline gap-6">
+        <div className="w-[120px] shrink-0 font-[system-ui,sans-serif] text-muted-foreground text-xs/tight">
+          label · 14/20
+        </div>
+        <div className="font-medium font-[system-ui,sans-serif] text-foreground text-sm/tight">
+          Amount
+        </div>
+      </div>
+      <div className="flex items-baseline gap-6">
+        <div className="w-[120px] shrink-0 font-[system-ui,sans-serif] text-muted-foreground text-xs/tight">
+          small · 12/20
+        </div>
+        <div className="font-normal font-[system-ui,sans-serif] text-foreground text-xs/tight">
+          Balance: 1,240.50 USDC
+        </div>
+      </div>
+      <div className="flex items-baseline gap-6">
+        <div className="w-[120px] shrink-0 font-[system-ui,sans-serif] text-muted-foreground text-xs/tight">
+          link · inherits size
+        </div>
+        <div className="font-medium font-[system-ui,sans-serif] underline-offset-2 [text-decoration:underline_1px] [color:var(--color-primary)] text-sm/tight">
+          vault terms
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,33 @@
+    <div className="[font-synthesis:none] wrap-anywhere text-xs leading-4 flex overflow-clip w-[560px] h-fit font-sans flex-col p-8 gap-4 [background-color:var(--color-background)] antialiased">
+      <div className="font-medium tracking-wide uppercase font-[system-ui,sans-serif] text-muted-foreground text-xs/tight">
+        CopyButton
+      </div>
+      <div className="flex items-center gap-4 flex-wrap">
+        <div className="flex items-center h-8 px-3 rounded-md gap-2 bg-muted border border-solid border-muted">
+          <div className="font-medium font-[system-ui,sans-serif] text-foreground text-sm/tight">
+            0x71C7…976F
+          </div>
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', flexShrink: '0' }}>
+            <rect x="5.5" y="5.5" width="8" height="8" rx="1.5" fill="none" stroke="var(--color-muted-foreground)" strokeWidth="1.5" />
+            <path d="M10.5 3.5V3A1.5 1.5 0 0 0 9 1.5H3A1.5 1.5 0 0 0 1.5 3v6A1.5 1.5 0 0 0 3 10.5h.5" fill="none" stroke="var(--color-muted-foreground)" strokeWidth="1.5" />
+          </svg>
+        </div>
+        <div className="flex items-center h-8 px-3 rounded-md gap-2 bg-muted border border-solid border-muted [outline:2px_solid_var(--color-focus)] outline-offset-2">
+          <div className="font-medium font-[system-ui,sans-serif] text-foreground text-sm/tight">
+            0x71C7…976F
+          </div>
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', flexShrink: '0' }}>
+            <rect x="5.5" y="5.5" width="8" height="8" rx="1.5" fill="none" stroke="var(--color-muted-foreground)" strokeWidth="1.5" />
+            <path d="M10.5 3.5V3A1.5 1.5 0 0 0 9 1.5H3A1.5 1.5 0 0 0 1.5 3v6A1.5 1.5 0 0 0 3 10.5h.5" fill="none" stroke="var(--color-muted-foreground)" strokeWidth="1.5" />
+          </svg>
+        </div>
+        <div className="flex items-center h-8 px-3 rounded-md gap-2 bg-success border border-solid border-success">
+          <div className="font-medium font-[system-ui,sans-serif] [color:var(--color-primary-foreground)] text-sm/tight">
+            Copied
+          </div>
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', flexShrink: '0' }}>
+            <path d="M3 8.5l3 3 7-7" fill="none" stroke="var(--color-primary-foreground)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
+      </div>
+    </div>

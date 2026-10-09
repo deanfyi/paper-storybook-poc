@@ -1,0 +1,42 @@
+    <div className="[font-synthesis:none] wrap-anywhere flex overflow-clip w-[560px] h-fit font-sans flex-col p-8 gap-4 [background-color:var(--color-background)] antialiased">
+      <div className="font-medium tracking-wide uppercase font-[system-ui,sans-serif] text-muted-foreground text-xs/tight">
+        Button
+      </div>
+      <div className="flex items-center gap-4 flex-wrap">
+        <div className="flex items-center justify-center h-[40px] font-semibold px-4 rounded-md [background-color:var(--color-primary)]">
+          <div className="flex font-semibold w-max font-[system-ui,sans-serif] [color:var(--color-primary-foreground)] text-sm/tight">
+            Deposit
+          </div>
+        </div>
+        <div className="flex items-center justify-center h-[40px] font-semibold px-4 rounded-md [background-color:var(--color-primary)] [outline:2px_solid_var(--color-focus)] outline-offset-2">
+          <div className="flex font-semibold w-max font-[system-ui,sans-serif] [color:var(--color-primary-foreground)] text-sm/tight">
+            Deposit
+          </div>
+        </div>
+        <div className="flex items-center justify-center h-[40px] font-semibold px-4 rounded-md bg-muted border border-solid border-border">
+          <div className="flex font-semibold w-max font-[system-ui,sans-serif] text-foreground text-sm/tight">
+            Withdraw
+          </div>
+        </div>
+        <div className="flex items-center justify-center h-[40px] font-semibold px-4 rounded-md bg-[#C1F026E6]">
+          <div className="flex font-semibold w-max font-[system-ui,sans-serif] [color:var(--color-primary-foreground)] text-sm/tight">
+            Deposit
+          </div>
+        </div>
+        <div className="flex items-center justify-center h-[40px] font-semibold px-4 rounded-md bg-(--color-primary)/80">
+          <div className="flex font-semibold w-max font-[system-ui,sans-serif] [color:var(--color-primary-foreground)] text-sm/tight">
+            Deposit
+          </div>
+        </div>
+        <div className="flex items-center justify-center h-[40px] font-semibold px-4 rounded-md bg-border border border-solid border-border">
+          <div className="flex font-semibold w-max font-[system-ui,sans-serif] text-foreground text-sm/tight">
+            Withdraw
+          </div>
+        </div>
+        <div className="flex items-center justify-center h-[40px] opacity-disabled font-semibold px-4 rounded-md [background-color:var(--color-primary)]">
+          <div className="flex font-semibold w-max font-[system-ui,sans-serif] [color:var(--color-primary-foreground)] text-sm/tight">
+            Deposit
+          </div>
+        </div>
+      </div>
+    </div>
