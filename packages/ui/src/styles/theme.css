@@ -1,6 +1,6 @@
 /*
  * GENERATED FROM PAPER: do not edit by hand.
- * Source: Paper file "Jazzy nest" (01M4DYBJFTV1WSY00VDCFZBF66), tokens hash 0d7334f1.
+ * Source: Paper file "Jazzy nest" (01M4DYBJFTV1WSY00VDCFZBF66), tokens hash 415f5d74.
  * Regenerate via Paper MCP get_tokens({ format: "tailwind" }) and replace this file.
  */
 @theme {
@@ -12,7 +12,7 @@
   --color-primary: #1f5c45;
   --color-primary-foreground: #ffffff;
   --color-success: #2f7d4f;
-  --color-warning: #975f0e;
+  --color-warning: #8a5300;
   --color-danger: #b3261e;
   --color-focus: var(--color-primary);
   --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;

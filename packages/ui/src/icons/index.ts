@@ -1,3 +1,4 @@
+export { IconArrowRight } from './mono/IconArrowRight'
 export { IconCheck } from './mono/IconCheck'
 export { IconCopy } from './mono/IconCopy'
 export { IconPocMark } from './color/IconPocMark'
