@@ -54,11 +54,18 @@ only covers source boards, so scan the whole file every sync, changed or not:
 - `find_nodes({ filters: [{ styleName: "*olor*", styleValue: "#*" }] })` (no page/node: every
   page). Every hit is a colour not bound to a token: `#000000` on text included (a layer with
   no colour renders black in Paper, so the design is wrong there too, not just the export).
-- `Swatch/<name>` frames on Tokens › Colors & Type must each fill with `var(--color-<name>)`: a
-  raw fill there means the designer edited the swatch, not the token, and nothing will sync.
-- In the boards you map, arbitrary values with no token (`bg-[#…]`, `text-[#…]`, `gap-[20px]`)
-  are the same problem. Board-only styles (step 2) are exempt.
-- Only exception: brand hex inside Icons › Color SVGs (lint allows it).
+- Tokens › Colors & Type: every `--color-*` token (from `get_tokens`) has a `Swatch/<name>`
+  frame, and the `Rectangle` inside it fills with `var(--color-<name>)`. A raw fill means the
+  designer edited the swatch, not the token, so nothing will sync; a missing swatch means a token
+  nobody can see. Report both.
+- In the boards you map, arbitrary **colours** (`bg-[#…]`, `text-[#…]`) are the same problem.
+  Sizes are different: Paper often exports pixels (`h-[44px]`), so map them to the 4px spacing
+  scale (`h-11`) and report only values off the scale (e.g. `gap-[18px]`). Board-only styles
+  (step 2) are exempt.
+- Only exception: brand hex inside Icons › Color SVGs (lint allows it; `find_nodes` doesn't
+  look inside SVG paint anyway).
+
+The file is clean as of the snapshot baseline: any hit is a real problem, not noise.
 
 Never emit a raw value. For a changed frame, keep the existing token class and leave that part of
 the change unsynced; sync the rest as usual. List every hit in the final report as a designer
