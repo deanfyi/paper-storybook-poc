@@ -29,7 +29,7 @@ Node 22 (`.nvmrc`). `pnpm install && pnpm dev` (:3100).
    - ✅ CI (`.github/workflows/ci.yml`): lint, typecheck, every story + play test in headless Chromium (`pnpm test`, Storybook vitest addon)
    - ✅ Sync diff check (`scripts/check-sync-commits.mjs`, in CI): `sync(paper):` commits may only touch `*.styles.ts`, `theme.css`, icon files + registry
    - ✅ `CLAUDE.md` (ownership + rules) and skills `.claude/skills/paper-to-code`, `.claude/skills/code-to-paper`, written from the steps that worked in phase 5, so any agent (incl. Dean's) follows the same rules
-7. Write-up from `FINDINGS.md`: what worked, what broke, what needed hand fixes
+7. ✅ Write-up: [`WRITEUP.md`](WRITEUP.md) (what worked, what broke, what needed hand fixes)
 
 ## Tokens (Paper → code)
 
