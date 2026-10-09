@@ -88,6 +88,7 @@
   - Worktree Storybook port and commit subject length documented.
 - ⛔ Active state can't be shown in the `States` boards: the pseudo-states addon doesn't rewrite Tailwind v4's `:active` rule for `bg-primary/80` (likely because the `color-mix` fallback nests an `@supports` block inside the rule; hover works because it sits inside `@media (hover: hover)`). Recommendation for the webapp: give interaction states their own colour tokens (`--color-primary-active`) instead of opacity modifiers: Dean controls them in Paper, and no `color-mix` nesting.
 - Still unenforced: Paper-side conventions (frame naming, state frames, tokens over raw colours). Nothing runs inside Paper; the sync skill reports violations instead of guessing.
+- Raw colours in Paper are now caught every sync: a designer set the `success` swatch (Tokens › Colors & Type) to raw `#24FF94` instead of editing `--color-success`; the sync missed it (not a source board, token hash unchanged). Fix: `paper-to-code` step 0b scans the whole file (`find_nodes` for `#*` colours), checks each `Swatch/<name>` uses its token, and reports every hit as a designer to-do; raw values never enter code. Colors & Type is now snapshotted.
 
 ## Typography (text styles)
 

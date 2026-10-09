@@ -26,12 +26,13 @@ and report it: that's a code change for a human-reviewed commit, not a sync.
 Paper has no change feed and its export has no layer names, so changes are found by diffing.
 Source boards and their snapshot files:
 
-| Page › board                                        | Snapshot                                 |
-| --------------------------------------------------- | ---------------------------------------- |
-| Tokens › Typography                                 | `paper-snapshots/Tokens/Typography.txt`  |
-| Components › Button, Input, Badge, Card, CopyButton | `paper-snapshots/Components/<Board>.txt` |
-| Blocks › DepositForm, VaultSummary, PageHeader      | `paper-snapshots/Blocks/<Board>.txt`     |
-| Icons › Mono, Color                                 | `paper-snapshots/Icons/<Board>.txt`      |
+| Page › board                                        | Snapshot                                   |
+| --------------------------------------------------- | ------------------------------------------ |
+| Tokens › Colors & Type                              | `paper-snapshots/Tokens/ColorsAndType.txt` |
+| Tokens › Typography                                 | `paper-snapshots/Tokens/Typography.txt`    |
+| Components › Button, Input, Badge, Card, CopyButton | `paper-snapshots/Components/<Board>.txt`   |
+| Blocks › DepositForm, VaultSummary, PageHeader      | `paper-snapshots/Blocks/<Board>.txt`       |
+| Icons › Mono, Color                                 | `paper-snapshots/Icons/<Board>.txt`        |
 
 1. `get_basic_info` per page for board ids (pages can gain boards: add them to the table).
 2. `get_jsx` every source board and overwrite its snapshot with the output **verbatim** (the JSX
@@ -44,6 +45,25 @@ Source boards and their snapshot files:
 Caveat: a token change can change how Paper exports unrelated boards (e.g. after `--color-focus`
 aliased `--color-primary`, `bg-primary` started exporting as `[background-color:var(--color-primary)]`).
 A snapshot diff with no visual change maps to no code change: that's fine, commit the snapshot.
+
+## 0b. Hardcoded values (every sync, whole file)
+
+Tokens are the only way a look reaches code: a raw value never enters code. The snapshot diff
+only covers source boards, so scan the whole file every sync, changed or not:
+
+- `find_nodes({ filters: [{ styleName: "*olor*", styleValue: "#*" }] })` (no page/node: every
+  page). Every hit is a colour not bound to a token: `#000000` on text included (a layer with
+  no colour renders black in Paper, so the design is wrong there too, not just the export).
+- `Swatch/<name>` frames on Tokens › Colors & Type must each fill with `var(--color-<name>)`: a
+  raw fill there means the designer edited the swatch, not the token, and nothing will sync.
+- In the boards you map, arbitrary values with no token (`bg-[#…]`, `text-[#…]`, `gap-[20px]`)
+  are the same problem. Board-only styles (step 2) are exempt.
+- Only exception: brand hex inside Icons › Color SVGs (lint allows it).
+
+Never emit a raw value. For a changed frame, keep the existing token class and leave that part of
+the change unsynced; sync the rest as usual. List every hit in the final report as a designer
+to-do, grouped by page › board › layer, with the fix: bind the layer to an existing token, or
+add/change the token in Paper's token panel (then re-sync). Lead the report with them.
 
 ## 1. Tokens
 
@@ -82,7 +102,7 @@ Mapping rules:
 - Ignore board-only styles: artboard padding/background, board `flex-wrap`, `font-[system-ui,…]`,
   `wrap-anywhere`, `antialiased`, sample copy (all text comes from props in code).
 - A colour not bound to a token (`text-black`, raw hex) has no code equivalent (`reset.css` drops
-  Tailwind's defaults): keep the existing token class and report it to the designer.
+  Tailwind's defaults): keep the existing token class and report it (step 0b).
 - A text layer whose size, line-height, weight and tracking **all** match a text style →
   `text-<style>` (plus its colour class); anything else keeps atomic classes (`text-sm/tight
 font-semibold`). Exact match only: never round to the nearest style.
@@ -135,5 +155,5 @@ with the Paper boards (screenshots) for a visual check.
 
 `sync(paper): <what changed>` (subject ≤ 72 chars) with only the allowed files, then run
 `node scripts/check-sync-commits.mjs HEAD~1 HEAD`. Docs/findings go in a separate commit.
-Report anything you skipped (untokened colours, structural changes, drift, out-of-date copies)
+Report anything you skipped (hardcoded values from step 0b first, structural changes, drift, out-of-date copies)
 to the user.
