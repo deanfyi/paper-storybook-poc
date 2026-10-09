@@ -1,7 +1,7 @@
 # Paper + Storybook design-to-code: POC write-up
 
-**Question:** can an existing design tool (Paper), driven by an AI agent over MCP, hand off a design
-to React components and keep design and code in sync both ways, without a custom tool?
+**Question:** can Paper, driven by an AI agent over MCP, hand off a design
+to React components and keep design and code in sync both ways?
 
 **Answer: yes, with conditions.** All three parts of the success bar passed. What makes it work
 isn't the tool alone but a split of ownership plus checks that enforce it. The main limits are
