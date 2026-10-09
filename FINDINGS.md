@@ -67,3 +67,12 @@
 - Verified: `var(--color-*)` works in SVG presentation attributes (`stopColor`); `useId` icons import fine into Next server components.
 - Icons are a third synced asset kind (after tokens and classes): `get_jsx` exports SVG geometry with `var(--color-*)` strokes; stored in `icons.tsx` with `currentColor` so color stays in `*.styles.ts`.
 - ⛔ Cost/limits: Paper's free plan has a weekly MCP call limit. Hit it mid-phase-5 (2026-10-08) after one session of building tokens, components, blocks and screens: "Weekly MCP limit reached… Upgrade to Paper Pro". An agent-driven design↔code flow needs Paper Pro for whoever runs syncs, and call volume matters (no instances means one call per copy for every propagated fix). Next day (2026-10-09 09:37 -03): limit appeared reset, but only 2 calls (`get_basic_info`, `get_guide`) went through before "limit reached, resets in 11 hours". The window looks rolling, not a weekly reset, and the remaining allowance isn't visible, so a sync can stop halfway.
+
+## Phase 6: enforcement + agent workflow
+- Before: every rule held only because someone ran lint by hand or remembered it (same failure as the monorepo's README-only icon rules). Now three layers:
+  - Code shape: ESLint + TypeScript, run in CI on every push/PR.
+  - Behaviour: every story runs as a test in headless Chromium (Storybook vitest addon), play functions included; 37 tests. Mutation check: breaking CopyButton's `setCopied(true)` fails `Copied` and `ResetsAfterTimeout`.
+  - Sync process: `scripts/check-sync-commits.mjs` fails any `sync(paper):` commit touching files outside the Paper-owned set (verified: both real sync commits pass; a probe touching `CopyButton.tsx` fails). The procedure itself lives in repo skills (`paper-to-code`, `code-to-paper`) + `CLAUDE.md`, so a fresh agent gets the mapping rules instead of rediscovering them.
+- pnpm gotcha: the vitest runner couldn't load `@storybook/react-vite/preset` after a clean install (Storybook resolves presets from its own store dir; pnpm doesn't hoist). Fix = Storybook's documented `getAbsolutePath` for framework/addons in `main.ts`. Dev server had worked only by accident of hoisting.
+- Still unenforced: Paper-side conventions (frame naming, state frames, tokens over raw colours). Nothing runs inside Paper; the sync skill reports violations instead of guessing.
+
