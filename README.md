@@ -5,7 +5,7 @@ From-scratch trial of a design-to-code flow: Paper → (MCP) → React component
 - `packages/ui`: components, tokens (`src/styles/theme.css`), Storybook (`pnpm storybook`, :6006)
 - `apps/web`: Next app; lint forbids raw HTML / `className` / `style` in `app/` (pages use `@poc/ui` only)
 
-Node 22 (`.nvmrc`). `pnpm install && pnpm dev` (:3100).
+Node 22 (`.nvmrc`). Setup, Paper connection and experiments: [`GUIDE.md`](GUIDE.md). `pnpm install && pnpm dev` (:3100).
 
 ## Success bar
 

@@ -18,7 +18,7 @@ and report it: that's a code change for a human-reviewed commit, not a sync.
 
 ## Before starting
 
-- Paper desktop open on the file "Jazzy nest"; call `get_guide("paper-mcp-instructions")` once.
+- Paper desktop open on the POC file ("Jazzy nest", or your copy of it); call `get_guide("paper-mcp-instructions")` once.
 - Clean working tree. Read `FINDINGS.md` if a rule below is unclear: it explains why.
 
 ## 0. What changed in Paper (snapshots)

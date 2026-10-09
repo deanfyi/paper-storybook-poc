@@ -13,7 +13,7 @@ is a separate node and must be updated.
 
 ## Before starting
 
-Paper desktop open on "Jazzy nest"; `get_guide("paper-mcp-instructions")` once.
+Paper desktop open on the POC file ("Jazzy nest", or your copy of it); `get_guide("paper-mcp-instructions")` once.
 
 ## Steps
 
